@@ -10,7 +10,7 @@
  */
 
 // preload common used classes
-Loader::requireOnce('modules/locations/common.php');
+Loader::requireOnce('modules/Locations/common.php');
 
 /**
  * initialise the locations module
@@ -416,7 +416,7 @@ function locations_init_interactiveinitstep3()
     $activate = (bool) FormUtil::getPassedValue('activate', false, 'POST');
 
     $render = pnRender::getInstance('locations', false);
-    $render->assign('authid', SecurityUtil::generateAuthKey('Modules'));
+    $render->assign('csrftoken', SecurityUtil::generateCsrfToken());
     $render->assign('activate', $activate);
     return $render->fetch('locations_init_step3.htm');
 }
@@ -452,7 +452,7 @@ function _locations_createDefaultCategory($regpath = '/__SYSTEM__/Modules')
     $cat->update();
 
     // get the category path for which we're going to insert our upgraded categories
-    $rootcat = CategoryUtil :: getCategoryByPath('/__SYSTEM__/Modules/locations');
+    $rootcat = CategoryUtil :: getCategoryByPath('/__SYSTEM__/Modules/Locations');
 
     // create an entry in the categories registry
     $registry = new PNCategoryRegistry();

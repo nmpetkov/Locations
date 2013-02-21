@@ -11,7 +11,7 @@
 
 
 // preload common used classes
-Loader::requireOnce('modules/locations/common.php');
+Loader::requireOnce('modules/Locations/common.php');
 
 
 /**
@@ -26,7 +26,7 @@ function locations_userapi_getLocationsForDropdown($args)
     $dom = ZLanguage::getModuleDomain('locations');
 
     // load the object array class corresponding to $objectType
-    if (!($class = Loader::loadArrayClassFromModule('locations', 'location'))) {
+    if (!($class = Loader::loadArrayClassFromModule('Locations', 'location'))) {
         pn_exit(__f('Error! Unable to load class [%s].', 'location', $dom));
     }
 
@@ -63,7 +63,7 @@ function locations_userapi_getLocationByID($args)
     $dom = ZLanguage::getModuleDomain('locations');
 
     // load the object class corresponding to $objectType
-    if (!($class = Loader::loadClassFromModule('locations', 'location'))) {
+    if (!($class = Loader::loadClassFromModule('Locations', 'location'))) {
         pn_exit(__f('Error! Unable to load class [%s].', 'location', $dom));
     }
     // intantiate object model

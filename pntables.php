@@ -24,8 +24,6 @@ function locations_pntables()
     // Initialise table array
     $pntable = array();
 
-    $dbdriver = DBConnectionStack::getConnectionDBDriver();
-
     /*
      * definitions for location table
      */

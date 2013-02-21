@@ -17,7 +17,7 @@ function locations_ajax_get()
     $field = FormUtil::getpassedValue('field');
 
     // load the object array class corresponding to $objectType
-    if (!($class = Loader::loadArrayClassFromModule('locations', 'location'))) {
+    if (!($class = Loader::loadArrayClassFromModule('Locations', 'location'))) {
         pn_exit(__f('Error! Unable to load class [%s].', 'location', $dom));
     }
 

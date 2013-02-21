@@ -11,7 +11,7 @@
 
 $dom = ZLanguage::getModuleDomain('locations');
 
-$modversion['name']           = 'locations';
+$modversion['name']           = 'Locations';
 $modversion['displayname']    = __('Locations', $dom);
 $modversion['description']    = __('Database for all kinds of locations.', $dom);
 $modversion['url']            = __('locations', $dom);

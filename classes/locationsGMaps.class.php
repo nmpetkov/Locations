@@ -10,7 +10,7 @@
  */
 
 
-Loader::loadClass('GoogleMapAPI', 'modules/locations/classes/GMaps/');
+Loader::loadClass('GoogleMapAPI', 'modules/Locations/classes/GMaps/');
 
 class locationsGMaps extends GoogleMapAPI {
 
@@ -20,7 +20,7 @@ class locationsGMaps extends GoogleMapAPI {
      * @param string $url
      */
     function fetchURL($url) {
-        Loader::loadClass('Snoopy', 'modules/locations/classes/Snoopy/');
+        Loader::loadClass('Snoopy', 'modules/Locations/classes/Snoopy/');
         $snoopy = new Snoopy;
         $snoopy->fetch($url);
         return $snoopy->results;

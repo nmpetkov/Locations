@@ -10,7 +10,7 @@
  */
 
 // preload common used classes
-Loader::requireOnce('modules/locations/common.php');
+Loader::requireOnce('modules/Locations/common.php');
 
 /**
  * This handler class handles the page events of the pnForm called by the locations_admin_edit() function.
@@ -62,7 +62,7 @@ class locations_admin_location_editHandler extends pnFormHandler
 
         $objectType = 'location';
         // load the object class corresponding to $objectType
-        if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
+        if (!($class = Loader::loadClassFromModule('Locations', $objectType))) {
             pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
         }
 
@@ -156,7 +156,7 @@ class locations_admin_location_editHandler extends pnFormHandler
 
         $objectType = 'location';
         // load the object class corresponding to $objectType
-        if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
+        if (!($class = Loader::loadClassFromModule('Locations', $objectType))) {
             pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
         }
 
@@ -172,7 +172,7 @@ class locations_admin_location_editHandler extends pnFormHandler
 
             //set latlng
             $key = pnModGetVar('locations', 'GoogleMapsAPIKey');
-            Loader::loadClass('locationsGMaps','modules/locations/classes/');
+            Loader::loadClass('locationsGMaps','modules/Locations/classes/');
             $map = new locationsGMaps();
             $map->setAPIKey($key);
             $geocode = $map->getGeocode($locationData['street'].', '.$locationData['zip'].', '.$locationData['city'].', '.$locationData['country']);
@@ -223,7 +223,7 @@ class locations_admin_location_editHandler extends pnFormHandler
 
             //set latlng
             $key = pnModGetVar('locations', 'GoogleMapsAPIKey');
-            Loader::loadClass('locationsGMaps','modules/locations/classes/');
+            Loader::loadClass('locationsGMaps','modules/Locations/classes/');
             $map = new locationsGMaps();
             $map->setAPIKey($key);
             $geocode = $map->getGeocode($locationData['street'].', '.$locationData['zip'].', '.$locationData['city'].', '.$locationData['country']);

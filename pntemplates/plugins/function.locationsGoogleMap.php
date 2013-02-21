@@ -14,7 +14,7 @@ function smarty_function_locationsGoogleMap($params, &$render)
     $dom = ZLanguage::getModuleDomain('locations');
 
     $key = $params['key'];
-    Loader::loadClass('locationsGMaps','modules/locations/classes/');
+    Loader::loadClass('locationsGMaps','modules/Locations/classes/');
     $map = new locationsGMaps();
     $map->setAPIKey($key);
     $map->disableDirections();
@@ -25,7 +25,7 @@ function smarty_function_locationsGoogleMap($params, &$render)
     $map->setWidth(($params['width']) ? $params['width'] : '500px');
     $map->setHeight(($params['height']) ? $params['height'] : '500px');
     $map->setControlSize = 'small';
-    $map->addMarkerIcon(pnGetBaseURI().'/modules/locations/pnimages/marker.png',pnGetBaseURI().'/modules/locations/pnimages/shadow50.png',10,34,20,0);
+    $map->addMarkerIcon(pnGetBaseURI().'/modules/Locations/pnimages/marker.png',pnGetBaseURI().'/modules/Locations/pnimages/shadow50.png',10,34,20,0);
     $reflatlng = explode(',', $params['latlng']);
     $map->addMarkerByCoords($reflatlng[1], $reflatlng[0], $params['title'], $params['html'], $params['tooltip']);
 
@@ -34,7 +34,7 @@ function smarty_function_locationsGoogleMap($params, &$render)
         $objectType = 'location';
     }
     // load the object array class corresponding to $objectType
-    if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
+    if (!($class = Loader::loadArrayClassFromModule('Locations', $objectType))) {
         pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
     }
     if ($params['distance'] && $params['distanceUnit']) {
@@ -53,7 +53,7 @@ function smarty_function_locationsGoogleMap($params, &$render)
             $latlng     = explode(',', $location['latlng']);
             $html       = '<p><strong>'.$location['name'].'</strong></p><p>'.$location['street'].'<br />'.$location['zip'].' '.$location['city'].' <em><a href=\''. pnModUrl('locations', 'user', 'display', array('locationid' => $location['locationid'])).'\'>('.__('more', $dom).')</a></em></p>';
             $map->addMarkerByCoords($latlng[1], $latlng[0], $location['name'], $html);
-            $map->addMarkerIcon(pnGetBaseURI().'/modules/locations/pnimages/mm_20_yellow.png', pnGetBaseURI().'/modules/locations/pnimages/mm_20_shadow.png', 10, 20, 10, 10);
+            $map->addMarkerIcon(pnGetBaseURI().'/modules/Locations/pnimages/mm_20_yellow.png', pnGetBaseURI().'/modules/Locations/pnimages/mm_20_shadow.png', 10, 20, 10, 10);
 
         }
     }

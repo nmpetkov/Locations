@@ -18,7 +18,7 @@
  */
 
 // preload common used classes
-Loader::requireOnce('modules/locations/common.php');
+Loader::requireOnce('modules/Locations/common.php');
 // include pnForm in order to be able to inherit from pnFormHandler
 Loader::requireOnce('includes/pnForm.php');
 
@@ -56,7 +56,7 @@ function locations_admin_main($args)
  * @param        raw            boolean   optional way to display a template instead of fetching it (needed for standalone output)
  * @return       Render output
  */
-function locations_admin_view($args)
+function locations_admin_view($args = array())
 {
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError(pnModURL('locations', 'user', 'main'));
@@ -69,8 +69,9 @@ function locations_admin_view($args)
     if (!in_array($objectType, locations_getObjectTypes())) {
         $objectType = 'location';
     }
+
     // load the object array class corresponding to $objectType
-    if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
+    if (!($class = Loader::loadArrayClassFromModule('Locations', $objectType))) {
         pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
     }
 
@@ -87,7 +88,7 @@ function locations_admin_view($args)
             pn_exit (__f('Error! Unable to load class [%s].', 'CategoryRegistryUtil', $dom));
         }
 
-        $categories = CategoryRegistryUtil::getRegisteredModuleCategory('locations', 'locations_location', 'Type', '/__SYSTEM__/Modules/locations');
+        $categories = CategoryRegistryUtil::getRegisteredModuleCategory('locations', 'locations_location', 'Type', '/__SYSTEM__/Modules/Locations');
 
         if ($category > 0) {
             if (!is_array($objectArray->_objCategoryFilter)) {
@@ -128,7 +129,7 @@ function locations_admin_view($args)
     $sortParam = $sort . ' ' . $sdir;
 
     // use locationsFilterUtil to support generic filtering based on an object-oriented approach
-    Loader::LoadClass('locationsFilterUtil', 'modules/locations/classes/FilterUtil/');
+    Loader::LoadClass('locationsFilterUtil', 'modules/Locations/classes/FilterUtil/');
     $fu =& new locationsFilterUtil(array('table' => $objectArray->_objType));
 
     // you could set explicit filters at this point, something like
@@ -200,7 +201,7 @@ function locations_admin_edit($args)
     $render->assign('DefaultCountry', pnModGetVar('locations', 'DefaultCountry'));
 
     // include event handler class
-    Loader::requireOnce('modules/locations/classes/FormHandler/locations_admin_' . $objectType . '_edithandler.class.php');
+    Loader::requireOnce('modules/Locations/classes/FormHandler/locations_admin_' . $objectType . '_edithandler.class.php');
 
     // build form handler class name
     $handlerClass = 'locations_admin_' . $objectType . '_editHandler';
@@ -264,7 +265,7 @@ function locations_admin_modifyconfig()
     $render = FormUtil::newpnForm('locations');
 
     // include event handler class
-    Loader::requireOnce('modules/locations/classes/FormHandler/locations_admin_confighandler.class.php');
+    Loader::requireOnce('modules/Locations/classes/FormHandler/locations_admin_confighandler.class.php');
 
     // Execute form using supplied template and page event handler
     return $render->pnFormExecute('locations_admin_modifyconfig.htm', new locations_admin_configHandler());

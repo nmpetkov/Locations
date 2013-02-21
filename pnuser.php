@@ -18,7 +18,7 @@
  */
 
 // preload common used classes
-Loader::requireOnce('modules/locations/common.php');
+Loader::requireOnce('modules/Locations/common.php');
 // include pnForm in order to be able to inherit from pnFormHandler
 Loader::requireOnce('includes/pnForm.php');
 
@@ -70,7 +70,7 @@ function locations_user_view($args)
         $objectType = 'location';
     }
     // load the object array class corresponding to $objectType
-    if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
+    if (!($class = Loader::loadArrayClassFromModule('Locations', $objectType))) {
         pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
     }
 
@@ -87,7 +87,7 @@ function locations_user_view($args)
             pn_exit (__f('Error! Unable to load class [%s].', 'CategoryRegistryUtil', $dom));
         }
 
-        $categories = CategoryRegistryUtil::getRegisteredModuleCategory('locations', 'locations_location', 'Type', '/__SYSTEM__/Modules/locations');
+        $categories = CategoryRegistryUtil::getRegisteredModuleCategory('locations', 'locations_location', 'Type', '/__SYSTEM__/Modules/Locations');
 
         if ($category > 0) {
             if (!is_array($objectArray->_objCategoryFilter)) {
@@ -126,7 +126,7 @@ function locations_user_view($args)
     $sortParam = $sort . ' ' . $sdir;
 
     // use locationsFilterUtil to support generic filtering based on an object-oriented approach
-    Loader::LoadClass('locationsFilterUtil', 'modules/locations/classes/FilterUtil/');
+    Loader::LoadClass('locationsFilterUtil', 'modules/Locations/classes/FilterUtil/');
     $fu =& new locationsFilterUtil(array('table' => $objectArray->_objType));
 
     // you could set explicit filters at this point, something like
@@ -207,7 +207,7 @@ function locations_user_display($args)
         $objectType = 'location';
     }
     // load the object class corresponding to $objectType
-    if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
+    if (!($class = Loader::loadClassFromModule('Locations', $objectType))) {
         pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
     }
     // intantiate object model
@@ -264,7 +264,7 @@ function locations_user_getLocationsWithinDistanceOfZIP($args)
         return LogUtil::registerPermissionError();
     }
     $render = FormUtil::newpnForm('locations');
-    Loader::requireOnce('modules/locations/classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php');
+    Loader::requireOnce('modules/Locations/classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php');
 
 
     return $render->pnFormExecute('locations_user_getLocationsWithinDistanceOfZIP.htm', new locations_user_getLocationsWithinDistanceOfZIPHandler());

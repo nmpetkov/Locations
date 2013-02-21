@@ -12,7 +12,7 @@
 /**
  * Define Class path
  */
-define('LOCATIONS_FILTERUTIL_CLASS_PATH', 'modules/locations/classes/FilterUtil');
+define('LOCATIONS_FILTERUTIL_CLASS_PATH', 'modules/Locations/classes/FilterUtil');
 
 Loader::loadClass('locationsFilterUtil_Plugin', LOCATIONS_FILTERUTIL_CLASS_PATH);
 Loader::loadClass('locationsFilterUtil_Common', LOCATIONS_FILTERUTIL_CLASS_PATH);

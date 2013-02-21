@@ -39,7 +39,7 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
             if ($args['commandName'] == 'okay')
             {
                 $key = pnModGetVar('locations', 'GoogleMapsAPIKey');
-                Loader::loadClass('locationsGMaps','modules/locations/classes/');
+                Loader::loadClass('locationsGMaps','modules/Locations/classes/');
                 $map = new locationsGMaps();
                 $map->setAPIKey($key);
                 $map->disableDirections();
@@ -66,7 +66,7 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
                     $objectType = 'location';
                 }
                 // load the object array class corresponding to $objectType
-                if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
+                if (!($class = Loader::loadArrayClassFromModule('Locations', $objectType))) {
                     pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
                 }
 

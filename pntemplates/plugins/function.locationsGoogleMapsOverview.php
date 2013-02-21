@@ -14,7 +14,7 @@ function smarty_function_locationsGoogleMapsOverview($params, &$render)
     $dom = ZLanguage::getModuleDomain('locations');
 
     $key = $params['key'];
-    Loader::loadClass('locationsGMaps','modules/locations/classes/');
+    Loader::loadClass('locationsGMaps','modules/Locations/classes/');
     $map = new locationsGMaps();
     $map->setAPIKey($key);
     $map->disableDirections();

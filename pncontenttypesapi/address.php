@@ -60,7 +60,7 @@ class locations_contenttypesapi_addressPlugin extends contentTypeBase
 
     function startEditing(&$render)
     {
-        array_push($render->plugins_dir, 'modules/locations/pntemplates/pnform');
+        array_push($render->plugins_dir, 'modules/Locations/pntemplates/pnform');
     }
 
 }
